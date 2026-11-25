@@ -4,10 +4,10 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {PROJECTS,type ProjectKey} from './labProjects';
 import './ThinkingHand.css';
-const keys:ProjectKey[]=['aika','audio'];
+const keys:ProjectKey[]=['aika','audio','market'];
 type Marker={x:number;y:number;visible:boolean};
 type MarkerMap=Record<ProjectKey,Marker>;
-const emptyMarkers:MarkerMap={aika:{x:0,y:0,visible:false},audio:{x:0,y:0,visible:false}};
+const emptyMarkers:MarkerMap={aika:{x:0,y:0,visible:false},audio:{x:0,y:0,visible:false},market:{x:0,y:0,visible:false}};
 const vertexShader=`varying vec3 vPos; varying vec3 vColor; void main(){vPos=position;vColor=color;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`;
 const fragmentShader=`uniform vec3 hoverPos;uniform float hoverStrength;uniform float elapsed;uniform float intro;varying vec3 vPos;varying vec3 vColor;void main(){float d=distance(vPos,hoverPos);float wave=1.0-smoothstep(0.0,0.40,d);float ripple=0.5+0.5*cos(d*24.0-elapsed*5.0);vec3 c=mix(vColor,vec3(1.0,0.95,0.80),hoverStrength*wave*(0.55+0.45*ripple));gl_FragColor=vec4(c,0.18+0.82*intro);}`;
 export default function LabHand({reduced,paperHref,modelUrl}:{reduced:boolean;paperHref:string;modelUrl:string}){

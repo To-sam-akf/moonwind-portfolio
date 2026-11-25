@@ -1,5 +1,6 @@
-export type ProjectKey='aika'|'audio';
+export type ProjectKey='aika'|'audio'|'market';
 export const PROJECTS:Record<ProjectKey,{name:string;eyebrow:string;value:string;summary:string;tags:string[];meta:string;github:string;report:string;reportLabel:string;raw:[number,number,number]}>={
  aika:{name:'AIKA',eyebrow:'AI 产业链智能投研助手',value:'让产业研究的每一个结论，都有迹可循。',summary:'面向 AI 算力产业链的证据驱动投研问答系统，结合 Agent、RAG 与知识图谱，支持产业链分析、公司对比、风险识别和研究报告生成。',tags:['AGENT','RAG','知识图谱','证据引用'],meta:'探索性评估：20 道开发题、单轮实验，部分评分仍待核；结果不是独立测试或产品准确率。',github:'https://github.com/To-sam-akf/AIChainQASysterm',report:'https://github.com/To-sam-akf/AIChainQASysterm/blob/main/docs/eval-pilot/report.md',reportLabel:'完整实验报告',raw:[.04,.58,.16]},
- audio:{name:'EC-VIAI-AV',eyebrow:'视觉辅助音频修复与不确定性感知多候选生成',value:'当画面不可靠时，模型应当如何判断？',summary:'在 VIAI-AV 主干上引入视觉证据估计、融合门控、多候选生成和不确定性预测，探索视频缺失或错配时更可靠的音频修复。',tags:['MULTIMODAL AI','AUDIO INPAINTING','UNCERTAINTY'],meta:'研究草稿 · 视觉证据 / 音频修复',github:'https://github.com/To-sam-akf/EC-VAInpainting',report:'',reportLabel:'阅读论文草稿',raw:[.20,1.12,.10]}
+ audio:{name:'EC-VIAI-AV',eyebrow:'视觉辅助音频修复与不确定性感知多候选生成',value:'当画面不可靠时，模型应当如何判断？',summary:'在 VIAI-AV 主干上引入视觉证据估计、融合门控、多候选生成和不确定性预测，探索视频缺失或错配时更可靠的音频修复。',tags:['MULTIMODAL AI','AUDIO INPAINTING','UNCERTAINTY'],meta:'研究草稿 · 视觉证据 / 音频修复',github:'https://github.com/To-sam-akf/EC-VAInpainting',report:'',reportLabel:'阅读论文草稿',raw:[.20,1.12,.10]},
+ market:{name:'MarketANA',eyebrow:'期货研报智能解析与市场观点分析',value:'让分散的研报观点，更容易被发现与核对。',summary:'围绕期货研报，串联文档解析、品种识别与方向信号提取；结合规则判断、低置信度结果的模型辅助分析和人工审核，支持按品种、机构及趋势查看结果。',tags:['研报解析','规则 + LLM','人工审核','市场分析'],meta:'期货市场研究 · 观点提取与可视化',github:'https://github.com/To-sam-akf/marketAna',report:'https://github.com/To-sam-akf/marketAna/blob/main/README.md',reportLabel:'项目说明',raw:[-.13,1.12,.10]}
 };
