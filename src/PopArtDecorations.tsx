@@ -1,0 +1,9 @@
+'use client';
+import {useEffect,useRef} from 'react';
+import './PopArtDecorations.css';
+
+export default function PopArtDecorations({variant,reduced=false}:{variant:'hero'|'lab';reduced?:boolean}){
+ const ref=useRef<HTMLDivElement>(null);
+ useEffect(()=>{const root=ref.current,stage=root?.parentElement;if(!root||!stage||reduced||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;let frame=0;const move=(event:PointerEvent)=>{if(event.pointerType==='touch')return;const r=stage.getBoundingClientRect(),x=Math.max(-1,Math.min(1,(event.clientX-r.left)/r.width*2-1)),y=Math.max(-1,Math.min(1,(event.clientY-r.top)/r.height*2-1));cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{root.style.setProperty('--pop-x',String(x));root.style.setProperty('--pop-y',String(y))})};const leave=()=>{root.style.setProperty('--pop-x','0');root.style.setProperty('--pop-y','0')};stage.addEventListener('pointermove',move,{passive:true});stage.addEventListener('pointerleave',leave);return()=>{cancelAnimationFrame(frame);stage.removeEventListener('pointermove',move);stage.removeEventListener('pointerleave',leave)}},[reduced]);
+ return <div ref={ref} className={`pop-decor pop-${variant}`} aria-hidden="true"><div className="pop-paper"/><div className="pop-grid"/><div className="pop-wedge"/><div className="pop-slab"/><div className="pop-disc"/><div className="pop-top-shape"/><div className="pop-orbit pop-orbit-a"/><div className="pop-orbit pop-orbit-b"/><div className="pop-star">✳</div><div className="pop-spark">✦</div>{variant==='lab'&&<><div className="pop-corners"><i/><i/><i/><i/></div><div className="pop-object">OBJECT 002 <span>/</span> CREATION</div><div className="pop-editorial">IDEAS BECOME REAL.<br/><span>01 / PERCEPTION<br/>02 / CONNECTION<br/>03 / CREATION</span></div><div className="pop-sticker">TOUCH<br/><strong>THE IDEA</strong><br/>✳</div></>}</div>
+}
